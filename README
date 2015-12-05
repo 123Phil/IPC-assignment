@@ -1,0 +1,65 @@
+Author:  Phillip Stewart
+section: 13474
+email:   phillipwstewart@gmail.com
+
+sender and recv programs compliled and ran on OSX using:
+ $ gcc sender.c -o sender
+ $ gcc recv.c -o recv
+ $ ./recv &
+ $ ./sender testfile.txt
+
+note: on OSX, gcc invokes clang.
+However, these .c files should compile and run on any *nix system with the same commands.
+
+I also completed the extra-credit, send_sig and recv_sig.
+
+
+Also, a makefile is included with simple commands:
+make          : compiles sender and recv
+make sender   : compiles sender
+make recv     : compiles recv
+make signal   : compiles send_sig and recv_sig
+make clean    : removes compiled files and copied file
+
+
+The following shows a run on my laptop:
+
+ phillipstewart$ ls -l
+-rw-r--r--  1 phillipstewart  staff    12 Mar  1 20:09 keyfile.txt
+-rw-r--r--  1 phillipstewart  staff   133 Mar  8 16:07 makefile
+-rwxr-xr-x@ 1 phillipstewart  staff   320 Mar  8 17:14 msg.h
+-rwxr-xr-x@ 1 phillipstewart  staff  3407 Mar  8 17:30 recv.c
+-rwxr-xr-x@ 1 phillipstewart  staff  3045 Mar  8 17:42 sender.c
+-rw-r--r--  1 phillipstewart  staff    65 Mar  8 18:33 testfile.txt
+
+ phillipstewart$ cat testfile.txt 
+This is a sample file for testing the send and receive programs.
+It has 3 lines of text.
+This is the 3rd and final line.
+
+ phillipstewart$ make
+gcc sender.c -o sender
+gcc recv.c -o recv
+
+ phillipstewart$ ./recv &
+[1] 1625
+
+ phillipstewart$ ./sender testfile.txt 
+[1]+  Done                    ./recv
+
+ phillipstewart$ ls -l
+-rw-r--r--  1 phillipstewart  staff    12 Mar  1 20:09 keyfile.txt
+-rw-r--r--  1 phillipstewart  staff   133 Mar  8 16:07 makefile
+-rwxr-xr-x@ 1 phillipstewart  staff   320 Mar  8 17:14 msg.h
+-rwxr-xr-x  1 phillipstewart  staff  9488 Mar  8 18:31 recv
+-rwxr-xr-x@ 1 phillipstewart  staff  3407 Mar  8 17:30 recv.c
+-rw-r--r--  1 phillipstewart  staff    65 Mar  8 18:33 recvfile
+-rwxr-xr-x  1 phillipstewart  staff  9340 Mar  8 18:31 sender
+-rwxr-xr-x@ 1 phillipstewart  staff  3045 Mar  8 17:42 sender.c
+-rw-r--r--  1 phillipstewart  staff    65 Mar  8 18:33 testfile.txt
+
+ phillipstewart$ cat recvfile
+This is a sample file for testing the send and receive programs.
+It has 3 lines of text.
+This is the 3rd and final line.
+
